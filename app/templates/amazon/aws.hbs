@@ -1,0 +1,20 @@
+{{page-title "Aws"}}
+{{outlet}}
+
+  {{#each @model as |job|}}
+{{job.name}} 
+    <ul>
+    {{#if (is-pending job.last_builds)}}
+    ⌛
+    {{else}}
+          --
+              {{#each (await job.last_builds) as |b|}}
+    <li>
+                      {{b.result}}
+                      {{b.uuid}}
+    </li>
+              {{/each}}
+  {{/if}}
+</ul>
+
+  {{/each}}
