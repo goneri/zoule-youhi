@@ -2,17 +2,15 @@
 {{outlet}}
 
   {{#each @model as |job|}}
-{{job.name}} 
+    {{job.name}}
+
+    <Job @job={{job}} />
     <ul>
     {{#if (is-pending job.last_builds)}}
     ⌛
     {{else}}
-          --
-              {{#each (await job.last_builds) as |b|}}
-    <li>
-                      {{b.result}}
-                      {{b.uuid}}
-    </li>
+              {{#each (await job.last_builds) as |build|}}
+                    <Build @build={{build}} />
               {{/each}}
   {{/if}}
 </ul>

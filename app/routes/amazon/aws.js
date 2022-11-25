@@ -1,4 +1,5 @@
 import Route from '@ember/routing/route';
+import { service } from '@ember/service';
 
 
 function get_active_jobs() {
@@ -32,11 +33,13 @@ function get_last_results(job_name) {
 }
 
 export default class AmazonAwsRoute extends Route {
+  @service store;
   model() {
     return get_active_jobs().then((active_jobs) => {
       return active_jobs.map((job_name) => {
         return {
-          name: job_name, last_builds: get_last_results(job_name)
+          name: job_name,
+          last_builds: this.store.query('builds', {job_name: job_name, limit: 10})
         } 
       })
     });

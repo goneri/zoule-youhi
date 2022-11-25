@@ -1,0 +1,12 @@
+## buildset
+
+<article class="buildset">
+  <div class="details">
+  {{ @buildset.uuid }}
+  </div>
+
+  {{#each @buildset.builds as |build|}}
+  <Build @build={{build}} />
+  {{/each}}
+
+</article>

@@ -10,4 +10,6 @@ Router.map(function () {
   this.route('amazon', function () {
     this.route('aws');
   });
+  this.route('build', { path: '/build/:uuid' });
+  this.route('buildset', { path: '/buildset/:uuid' });
 });
