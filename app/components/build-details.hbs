@@ -1,13 +1,18 @@
 build/details
 <article class="build">
   <div class="details">
-  result: {{ @build.result }}
-  uuid: {{ @build.uuid }}
-  duration: {{ @build.duration }}
-  buildset UUID: {{@build.buildset}}
-  <LinkTo @route="buildset" @model={{@build.buildset}}>
+  <ul>
+  <li>result: {{ @build.result }}</li>
+  <li>uuid: {{ @build.uuid }}</li>
+  <li>duration: {{ @build.duration }}</li>
+  <li>buildset UUID: {{@build.buildset}}</li>
+  <li>start_time: {{@build.start_time}}</li>
+  <li>end_time: {{@build.end_time}}</li>
+  <li>job_name: {{@build.job_name}}</li>
+  <li><LinkTo @route="buildset" @model={{@build.buildset}}>
   other builds of the buildset
-  </LinkTo>
+  </LinkTo></li>
 
+  </ul>
   </div>
 </article>

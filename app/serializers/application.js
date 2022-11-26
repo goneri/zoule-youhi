@@ -6,16 +6,24 @@ export default class ApplicationSerializer extends DS.JSONSerializer {
   normalizeFindRecordResponse(store, type, payload) {
     console.log(payload);
     console.log(type);
-    if (type.modelName == 'build') {
+    console.log(payload.job_name);
+    if (type.modelName == 'build' || type.modelName == 'builds') {
       return {
         data: {
           id: payload.uuid,
           type: type.modelName,
           attributes: {
+            branch: payload.branch,
             buildset: payload.buildset.uuid,
             duration: payload.duration,
-            job_name: type.job_name,
+            end_time: payload.end_time,
+            job_name: payload.job_name,
+            log_url: payload.log_url,
+            nodeset: payload.nodeset,
+            project: payload.project,
+            ref_url: payload.ref_url,
             result: payload.result,
+            start_time: payload.start_time,
             uuid: payload.uuid,
           }
         }

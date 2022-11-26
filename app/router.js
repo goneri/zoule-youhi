@@ -8,7 +8,9 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   this.route('amazon', function () {
-    this.route('aws');
+    this.route('aws', function () {
+      this.route('build', { path: '/build/:uuid' });
+    });
   });
   this.route('build', { path: '/build/:uuid' });
   this.route('buildset', { path: '/buildset/:uuid' });

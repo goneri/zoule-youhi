@@ -1,0 +1,23 @@
+<article class="job">
+  <div class="details">
+
+    <table>
+    <tr>
+    <th>Target name</th>
+    <th>Last build</th>
+    </tr>
+    {{#each @jobs as |job|}}
+    <tr>
+    <td>{{job.name}}</td>
+      {{#each (await job.last_builds) as |build|}}
+      <td>
+        <LinkTo @route="amazon.aws.build" @model={{build.uuid}}>
+          {{ build.result }}
+        </LinkTo>
+      </td>
+      {{/each}}
+    </tr>
+    {{/each}}
+    </table>
+  </div>
+</article>

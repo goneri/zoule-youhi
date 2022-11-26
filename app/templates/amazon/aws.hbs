@@ -1,18 +1,4 @@
 {{page-title "Aws"}}
 {{outlet}}
 
-  {{#each @model as |job|}}
-    {{job.name}}
-
-    <Job @job={{job}} />
-    <ul>
-    {{#if (is-pending job.last_builds)}}
-    ⌛
-    {{else}}
-              {{#each (await job.last_builds) as |build|}}
-                    <Build @build={{build}} />
-              {{/each}}
-  {{/if}}
-</ul>
-
-  {{/each}}
+<AmazonAwsPeriodicJobList @jobs={{@model.active_jobs}} />

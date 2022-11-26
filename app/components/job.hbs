@@ -1,5 +1,8 @@
 <article class="job">
   <div class="details">
-  {{ @job.name }}
+  <ul>
+  <li>{{ @job.name }}</li>
+  <C3Chart @data={{this.model}} />
+  </ul>
   </div>
 </article>
