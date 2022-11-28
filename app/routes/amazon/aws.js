@@ -27,44 +27,6 @@ function get_active_jobs() {
 export default class AmazonAwsRoute extends Route {
   @service store;
 
-  get_graph_data(job_name) {
-    return this.store.query('builds', {job_name: job_name, limit: 10}).then(
-      builds => {
-        const column_date = ['x'].concat(builds.map((build) => build.start_time.split('T')[0]));
-        const column_data = ['duration'].concat(builds.map((build) => build.duration));
-        const column_max = ['1h timeout'].concat(builds.map((build) => 3600));
-        console.log(column_date);
-        console.log(column_data);
-
-        const axis = {
-          x: {
-            type: 'timeseries',
-            tick: {
-              format: '%Y-%m-%d'
-            }
-          }
-        };
-
-        const data = {
-          x: 'x',
-          columns: [
-            column_date,
-            column_data,
-            column_max
-          ]
-        };
-        const final = {
-          data: data,
-          axis: axis
-        };
-        console.log(final);
-        return final
-
-      }
-    )
-  }
-
-
   model() {
     let active_jobs = get_active_jobs().then((active_jobs) => {
       return active_jobs.sort().map((job_name) => {
