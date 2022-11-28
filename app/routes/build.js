@@ -9,6 +9,5 @@ export default class BuildRoute extends Route {
     return RSVP.hash({
       build: this.store.findRecord('build', params.uuid),
     });
-
   }
 }

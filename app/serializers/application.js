@@ -25,10 +25,9 @@ export default class ApplicationSerializer extends DS.JSONSerializer {
             result: payload.result,
             start_time: payload.start_time,
             uuid: payload.uuid,
-          }
-        }
-        
-      }
+          },
+        },
+      };
     }
 
     if (type.modelName == 'buildset') {
@@ -41,10 +40,9 @@ export default class ApplicationSerializer extends DS.JSONSerializer {
             result: payload.result,
             uuid: payload.uuid,
             builds: payload.builds,
-          }
-        }
-        
-      }
+          },
+        },
+      };
     }
   }
 }

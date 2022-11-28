@@ -1,23 +1,30 @@
-<article class="job">
-  <div class="details">
+<div class="container">
 
-    <table>
-    <tr>
-    <th>Target name</th>
-    <th>Last build</th>
-    </tr>
-    {{#each @jobs as |job|}}
-    <tr>
-    <td>{{job.name}}</td>
-      {{#each (await job.last_builds) as |build|}}
-      <td>
-        <LinkTo @route="amazon.aws.build" @model={{build.uuid}}>
-          {{ build.result }}
-        </LinkTo>
-      </td>
-      {{/each}}
-    </tr>
+  <table class="table table-striped">
+  <tr scope="row">
+  <th>Target name</th>
+  <th>Last build</th>
+  </tr>
+  {{#each @jobs as |job|}}
+  <tr>
+  <td class="table-primary">{{job.name}}</td>
+    {{#each (await job.last_builds) as |build|}}
+    {{#if (eq build.result "SUCCESS") }}
+    <td class="alert alert-success">
+      <LinkTo @route="amazon.aws.build" @model={{build.uuid}}>
+        {{ build.result }}
+      </LinkTo>
+    </td>
+
+    {{else}}
+    <td class="alert alert-warning">
+      <LinkTo @route="amazon.aws.build" @model={{build.uuid}}>
+        {{ build.result }}
+      </LinkTo>
+    </td>
+    {{/if}}
     {{/each}}
-    </table>
-  </div>
-</article>
+  </tr>
+  {{/each}}
+  </table>
+</div>

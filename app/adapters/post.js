@@ -1,4 +1,4 @@
-import ApplicationAdapter from "./application";
+import ApplicationAdapter from './application';
 
 // No need to reload again and again our static data
 export default class PostAdapter extends ApplicationAdapter {

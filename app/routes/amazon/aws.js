@@ -32,7 +32,7 @@ export default class AmazonAwsRoute extends Route {
       return active_jobs.sort().map((job_name) => {
         return {
           name: job_name.split("target-")[1],
-          last_builds: this.store.query('builds', {job_name: job_name, limit: 10}),
+          last_builds: this.store.query('builds', {job_name: job_name, limit: 15})
         }
       })
     })
