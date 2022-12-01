@@ -5,7 +5,9 @@
   <li>result: {{ @build.result }}</li>
   <li>uuid: {{ @build.uuid }}</li>
   <li>duration: {{ @build.duration }}</li>
-  <li>buildset UUID: {{@build.buildset}}</li>
+  <li>buildset UUID: {{@build.buildset.uuid}}</li>
+  <li>buildset result: {{@build.buildset.result}}</li>
+  <li>log URL: {{@build.log_url}}</li>
   <li>start_time: {{@build.start_time}}</li>
   <li>end_time: {{@build.end_time}}</li>
   <li>job_name: {{@build.job_name}}</li>
