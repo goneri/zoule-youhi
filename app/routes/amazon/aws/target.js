@@ -119,11 +119,16 @@ export default class AmazonAwsBuildRoute extends Route {
   }
 
   async model(params) {
+    const job_name = params.name.startsWith('integration-amazon.aws-') ? params.name : `integration-amazon.aws-target-${params.name}`;
+    const last_build = await this.store.query('build', {
+      job_name: job_name,
+      pipeline: 'periodic',
+      result: ["SUCCESS", "FAILURE", "TIMED_OUT"],
+      limit: 1,
+    }).then((builds) => {return builds[0]});
     return RSVP.hash({
-      build: this.store.findRecord('build', params.uuid),
-      graph: this.store
-                 .findRecord('build', params.uuid)
-                 .then((build) => this.get_graph_data(build.job_name, build.project, build.branch)),
+      build: last_build,
+      graph: this.get_graph_data(job_name, last_build.project, last_build.branch),
     });
   }
 }

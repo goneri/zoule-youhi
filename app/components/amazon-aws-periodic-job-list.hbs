@@ -11,14 +11,14 @@
     {{#each (await job.last_builds) as |build|}}
     {{#if (eq build.result "SUCCESS") }}
     <td class="alert alert-success">
-      <LinkTo @route="amazon.aws.build" @model={{build.uuid}}>
+      <LinkTo @route="amazon.aws.target" @model={{build.job_name}}>
         {{ build.result }}
       </LinkTo>
     </td>
 
     {{else}}
     <td class="alert alert-warning">
-      <LinkTo @route="amazon.aws.build" @model={{build.uuid}}>
+      <LinkTo @route="amazon.aws.target" @model={{build.job_name}}>
         {{ build.result }}
       </LinkTo>
     </td>
