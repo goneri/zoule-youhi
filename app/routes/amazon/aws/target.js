@@ -102,12 +102,18 @@ export default class AmazonAwsBuildRoute extends Route {
 
                  const data = {
                    x: 'x',
-                   columns: [column_date, column_setup_data, column_ansible_test_data, column_target_timeout, column_hard_timeout],
+                   columns: [
+                     column_date,
+                     column_setup_data,
+                     column_ansible_test_data,
+                     column_target_timeout,
+                     //column_hard_timeout
+                   ],
                    types: {
                      'set-up duration (seconds)': 'area',
                      'test duration (seconds)': 'area',
                      'timeout + set-up duration': 'line',
-                     'hard timeout (1h)': 'line'
+                     // 'hard timeout (1h)': 'line'
                    },
                  };
                  const final = {
