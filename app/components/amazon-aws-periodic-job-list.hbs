@@ -7,20 +7,21 @@
   </tr>
   {{#each @jobs as |job|}}
   <tr>
-  <td class="table-primary">{{job.name}}</td>
+  <td class="table-primary">
+
+      <LinkTo @route="amazon.aws.target" @model={{job.target_name}}>
+        {{job.target_name}}
+      </LinkTo>
+    </td>
     {{#each (await job.last_builds) as |build|}}
     {{#if (eq build.result "SUCCESS") }}
     <td class="alert alert-success">
-      <LinkTo @route="amazon.aws.target" @model={{build.job_name}}>
         {{ build.result }}
-      </LinkTo>
     </td>
 
     {{else}}
     <td class="alert alert-warning">
-      <LinkTo @route="amazon.aws.target" @model={{build.job_name}}>
         {{ build.result }}
-      </LinkTo>
     </td>
     {{/if}}
     {{/each}}
